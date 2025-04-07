@@ -1,32 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - eVoting</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>eVoting System - Multimedia university of kenya</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #030c5e;
+      color: #000;
+    }
+    header {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      width: 90px;
+      height: auto;
+    }
+    header h1 {
+      margin: 10px 0 5px;
+    }
+    header p {
+      font-style: italic;
+      margin: 0;
+    }
+    section {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #004080;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .submit-btn {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin-top: 20px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .link {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .link a {
+      color: #004080;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .hidden {
+      display: none;
+    }
+    .position-block {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        
-        <h1>MULTIMEDIA UNIVERSITY OF KENYA VOTING COUNCIL</h1>
-        <p1>Riding on Technology, Inspiring Innovation</p1>
-    </header>
 
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="dashboard.html" method="POST">
-            <label for="admission">Admission Number:</label>
-            <input type="text" id="admission" name="admission" required><br>
+<header>
+    
+  <h1>MULTIMEDIA UNIVERSITY OF KENYA</h1>
+  <p>Riding on Technology, Inspiring Innovation</p>
+</header>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
+<!-- Login Section -->
+<section id="loginSection">
+  <h2>Voter Login</h2>
+  <label>Admission Number</label>
+  <input type="text" id="loginAdmission" placeholder="Enter your admission number">
 
-            <button type="submit">Login</button>
+  <label>Password</label>
+  <input type="password" id="loginPassword" placeholder="Enter your password">
 
-            <p><a href="forgot-password.html">Forgot Password?</a></p>
-            <p>Not registered? <a href="register.html">Register here</a></p>
-        </form>
-    </div>
+  <button class="submit-btn" onclick="loginUser()">Login</button>
+
+  <div class="link">
+    <a href="#" onclick="showForgotPassword()">Forgot Password?</a> |
+    <a href="#" onclick="showRegister()">Register</a>
+  </div>
+</section>
+
+<!-- Registration Section -->
+<section id="registerSection" class="hidden">
+  <h2>Student Registration</h2>
+  <label>Admission Number</label>
+  <input type="text" id="regAdmission" placeholder="Enter admission number">
+
+  <label>Full Name</label>
+  <input type="text" id="regName" placeholder="Enter your name">
+
+  <label>Course</label>
+  <input type="text" id="regCourse" placeholder="Enter your course">
+
+  <label>Phone Number</label>
+  <input type="text" id="regPhone" placeholder="Enter phone number">
+
+  <label>Create Password</label>
+  <input type="password" id="regPassword" placeholder="Create a password">
+
+  <label>Confirm Password</label>
+  <input type="password" id="regConfirmPassword" placeholder="Confirm your password">
+
+  <button class="submit-btn" onclick="registerUser()">Register</button>
+</section>
+
+<!-- Forgot Password Section -->
+<section id="forgotSection" class="hidden">
+  <h2>Forgot Password</h2>
+  <label>Enter Phone Number</label>
+  <input type="text" id="forgotPhone" placeholder="Enter your registered phone number">
+
+  <button class="submit-btn" onclick="sendResetCode()">Send Verification Code</button>
+</section>
+
+<!-- Reset Password Section -->
+<section id="resetSection" class="hidden">
+  <h2>Reset Password</h2>
+  <label>Verification Code</label>
+  <input type="text" id="verificationCode" placeholder="Enter the code sent to your phone">
+
+  <label>New Password</label>
+  <input type="password" id="newPassword" placeholder="Enter new password">
+
+  <label>Confirm New Password</label>
+  <input type="password" id="confirmNewPassword" placeholder="Confirm new password">
+
+  <button class="submit-btn" onclick="resetPassword()">Reset Password</button>
+</section>
+
+<!-- Voting Section -->
+<section id="votingSection" class="hidden">
+  <h2>Cast Your Vote</h2>
+  <div class="position-block">
+    <h3>President</h3>
+    <label><input type="radio" name="president" value="Candidate A"> Candidate A</label>
+    <label><input type="radio" name="president" value="Candidate B"> Candidate B</label>
+  </div>
+  <div class="position-block">
+    <h3>Vice President</h3>
+    <label><input type="radio" name="vice" value="Candidate C"> Candidate C</label>
+    <label><input type="radio" name="vice" value="Candidate D"> Candidate D</label>
+  </div>
+  <div class="position-block">
+    <h3>Secretary General</h3>
+    <label><input type="radio" name="secretary" value="Candidate E"> Candidate E</label>
+    <label><input type="radio" name="secretary" value="Candidate F"> Candidate F</label>
+  </div>
+  <div class="position-block">
+    <h3>Finance Secretary</h3>
+    <label><input type="radio" name="finance" value="Candidate G"> Candidate G</label>
+    <label><input type="radio" name="finance" value="Candidate H"> Candidate H</label>
+  </div>
+  <button class="submit-btn" onclick="submitVotes()">Submit Vote</button>
+</section>
+
+<!-- Confirmation Section -->
+<section id="confirmationSection" class="hidden">
+  <h2>Vote Submitted!</h2>
+  <p>Thank you for voting. Your vote has been recorded.</p>
+  <button class="submit-btn" onclick="showResults()">View Results</button>
+</section>
+
+<!-- Results Section -->
+<section id="resultsSection" class="hidden">
+  <h2>Election Results (Sample)</h2>
+  <p><strong>President:</strong> Candidate A - 70 votes, Candidate B - 55 votes</p>
+  <p><strong>Vice President:</strong> Candidate C - 60 votes, Candidate D - 65 votes</p>
+  <p><strong>Secretary General:</strong> Candidate E - 75 votes, Candidate F - 50 votes</p>
+  <p><strong>Finance Secretary:</strong> Candidate G - 80 votes, Candidate H - 45 votes</p>
+  <button class="submit-btn" onclick="goBack()">Go Back to Login</button>
+</section>
+
+<script>
+  function showRegister() {
+    hideAll();
+    document.getElementById('registerSection').classList.remove('hidden');
+  }
+
+  function showForgotPassword() {
+    hideAll();
+    document.getElementById('forgotSection').classList.remove('hidden');
+  }
+
+  function sendResetCode() {
+    alert("A verification code has been sent.");
+    hideAll();
+    document.getElementById('resetSection').classList.remove('hidden');
+  }
+
+  function resetPassword() {
+    const code = document.getElementById('verificationCode').value.trim();
+    const newPass = document.getElementById('newPassword').value.trim();
+    const confirmPass = document.getElementById('confirmNewPassword').value.trim();
+
+    if (!code || !newPass || !confirmPass || newPass !== confirmPass) {
+      alert("Please enter matching new password and code.");
+      return;
+    }
+
+    alert("Password reset successful. You can now login.");
+    hideAll();
+    document.getElementById('loginSection').classList.remove('hidden');
+  }
+
+  function registerUser() {
+    const pass = document.getElementById('regPassword').value;
+    const confirm = document.getElementById('regConfirmPassword').value;
+    if (pass !== confirm) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    alert("Registration successful! You can now login.");
+    hideAll();
+    document.getElementById('loginSection').classList.remove('hidden');
+  }
+
+  function loginUser() {
+    const admission = document.getElementById('loginAdmission').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+
+    if (!admission || !password) {
+      alert("Please enter your credentials.");
+      return;
+    }
+
+    hideAll();
+    document.getElementById('votingSection').classList.remove('hidden');
+  }
+
+  function submitVotes() {
+    const positions = ['president', 'vice', 'secretary', 'finance'];
+    for (let pos of positions) {
+      if (!document.querySelector(`input[name="${pos}"]:checked`)) {
+        alert(`Please vote for the ${pos}.`);
+        return;
+      }
+    }
+
+    hideAll();
+    document.getElementById('confirmationSection').classList.remove('hidden');
+  }
+
+  function showResults() {
+    hideAll();
+    document.getElementById('resultsSection').classList.remove('hidden');
+  }
+
+  function goBack() {
+    hideAll();
+    document.getElementById('loginSection').classList.remove('hidden');
+  }
+
+  function hideAll() {
+    const sections = document.querySelectorAll("section");
+    sections.forEach(sec => sec.classList.add('hidden'));
+  }
+</script>
+
 </body>
 </html>

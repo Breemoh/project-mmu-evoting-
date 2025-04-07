@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>eVoting Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0b025c;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+    }
+
+    header img {
+      height: 80px;
+      vertical-align: middle;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #00274d;
+    }
+
+    .vote-section {
+      margin: 25px 0;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background-color: #f9f9f9;
+    }
+
+    .vote-section h3 {
+      color: #004080;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    #voting-form button {
+      background-color: #004080;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 20px auto 0;
+    }
+
+    #voting-form button:hover {
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    
+    <h1>MULTIMEDIA UNIVERSITY OF KENYA VOTING COUNCIL</h1>
+    <p>Riding on Technology, Inspiring Innovation</p>
+  </header>
+
+  <div class="container">
+    <h2>Welcome, Voter!</h2>
+    <p>Please cast your votes below. You can only vote once.</p>
+
+    <form action="results.html" method="post" id="voting-form">
+
+      <div class="vote-section">
+        <h3>President</h3>
+        <label><input type="radio" name="president" value="Candidate A"> Candidate A</label>
+        <label><input type="radio" name="president" value="Candidate B"> Candidate B</label>
+      </div>
+
+      <div class="vote-section">
+        <h3>Vice President</h3>
+        <label><input type="radio" name="vice_president" value="Candidate C"> Candidate C</label>
+        <label><input type="radio" name="vice_president" value="Candidate D"> Candidate D</label>
+      </div>
+
+      <div class="vote-section">
+        <h3>Secretary General</h3>
+        <label><input type="radio" name="secretary_general" value="Candidate E"> Candidate E</label>
+        <label><input type="radio" name="secretary_general" value="Candidate F"> Candidate F</label>
+      </div>
+
+      <div class="vote-section">
+        <h3>Finance Secretary</h3>
+        <label><input type="radio" name="finance_secretary" value="Candidate G"> Candidate G</label>
+        <label><input type="radio" name="finance_secretary" value="Candidate H"> Candidate H</label>
+      </div>
+
+      <button type="submit">Submit Vote</button>
+
+    </form>
+  </div>
+
+</body>
+</html>
